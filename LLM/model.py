@@ -3,7 +3,7 @@ from transformers import pipeline, Conversation
 
 os.environ['HF_HOME']='F:\Software-Project\Sport-Highlights\CACHE'
 
-model_name = "TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T"
+model_name = "umm-maybe/SportsFanGhost"
 
 converse = pipeline('conversational',model=model_name, device='cuda')
 
