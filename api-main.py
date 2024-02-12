@@ -1,8 +1,7 @@
-from Timestamps import Generator
+from App import SportApp
 from flask import Flask, jsonify, request
 
-
-gen = Generator()
+sport = SportApp()
 
 app = Flask(__name__)
 
@@ -16,8 +15,8 @@ def get_data():
 def add_data():
     req = request.get_json()
     vid_path = req['path']
-    timestamps = gen.get_highlight_timestamps(vid_path)    
-    data.append(timestamps)
+    result = sport.make(vid_path)    
+    data.append(result)
     return '', 204  # No content response
 
 if __name__ == '__main__':

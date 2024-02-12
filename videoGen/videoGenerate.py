@@ -1,45 +1,22 @@
-from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 from moviepy.editor import VideoFileClip, concatenate_videoclips
+import os
 
+def cut_video(input_video, output_video, timestamps):
+    clips = []
+    for segment in timestamps:
+        start_time, end_time = segment['timestamp']
+        clip = VideoFileClip(input_video).subclip(start_time , end_time)
+        clips.append(clip)
 
-class GenerateVideo:
+    final_clip = concatenate_videoclips(clips)
+    final_clip.write_videofile(output_video)
+    for clip in clips:
+        clip.close()
 
-    def __init__(self):
-        self.time = []
-        self.count = 1
-        self.transcribe = ''
+# Example usage
+if __name__=='main':
+    input_video_path = 'F:\Software-Project\Highlights\Sports-highlights\Cricket-data\Dramatic Final Over In FULL   Thrilling T20 Goes To Final Ball   England v New Zealand 2013.mp4'
+    output_video_path = 'output_video.mp4'
+    timestamps = [{'timestamp': [0.0, 9.0], 'text': " He's nailed this. He's high in the air. He's got enough. Oh, yes, he does. He's six."},{'timestamp': [20.0, 25.0], 'text': " picked it up the six pressure on Anderson. Ornith looks at it. That's good for a young gun."},{'timestamp': [33.0, 34.0], 'text': " And he's got not got this."},{'timestamp': [36.0, 38.0], 'text': ' Right, 19.1.'},{'timestamp': [39.0, 41.0], 'text': ' The 194 for three New Zealand.'},{'timestamp': [41.0, 43.0], 'text': ' 192 for five England.'},{'timestamp': [63.0, 65.0], 'text': " that's better. Dot ball. That ball for New Zealand went"},{'timestamp': [65.0, 66.0], 'text': ' for four.'},{'timestamp': [103.0, 105.0], 'text': " Tries the bounce and he's pulled into the leg side. He's got the crowd. Robbie Bupara has got the crowd. Fancy a nine. He's got the crowd."},{'timestamp': [133.46, 135.62], 'text': ' Down to a T20 here.'},{'timestamp': [185.0, 187.0], 'text': ' Like a side salad Cori Anderson. Good recovery is this.'},{'timestamp': [187.0, 189.0], 'text': ' Six off the first ball.'},{'timestamp': [205.88, 207.72], 'text': ' The final eight off two.'},{'timestamp': [208.44, 211.32], 'text': ' Left hand, though, hitting to the short boundary now.'},{'timestamp': [247.0, 250.0], 'text': ' Six for a super over.'},{'timestamp': [250.0, 252.0], 'text': ' And came super over.'},{'timestamp': [258.0, 260.0], 'text': ' Give it everything there Ben Stolkes'},{'timestamp': [322.52, 324.28], 'text': ' Robby with par a just a single'},{'timestamp': [324.28, 329.0], 'text': ' its New Zealand in a wonderfully entertaining game at T20 cricket.'},{'timestamp': [334.0, 336.0], 'text': ' Anderson, as did Butler.'},{'timestamp': [343.0, 345.36], 'text': ' Continuous changes of plans from Brendan McCullough,'}]
 
-    def getTimeStamp(self):
-        for i in self.transcribe:
-            self.time.append(i['timestamp'])
-
-    def cut_video(self, input_file, output_file, start_time, end_time):
-        ffmpeg_extract_subclip(input_file, start_time, end_time, targetname=output_file)
-
-    def generateClips(self):
-        input_file = 'video.mp4'
-        for i in self.time:
-            start_time = i[0] 
-            end_time = i[1]
-            output_file = f"clip{self.count}.mp4"
-            self.count += 1 
-            self.cut_video(input_file, output_file , start_time, end_time)
-
-    def generateHighLightVideo(self,transcribe):
-        self.transcribe = transcribe
-        self.getTimeStamp()
-        self.generateClips()
-        clips = []
-        for i in range(1,self.count):
-            clip = VideoFileClip(f"clip{i}.mp4")
-            clips.append(clip)
-        final_clip = concatenate_videoclips(clips)
-        final_clip.write_videofile('highlights.mp4')
-
-        
-
-
-t = [{'text': ' What an over. It turned out to be a game', 'timestamp': [0.0, 3.0]}, {'text': " changing over. I'm concerned probably the", 'timestamp': [3.0, 6.0]}, {'text': ' world of the tournament so far for me.', 'timestamp': [6.0, 8.0]}, {'text': ' Absolutely brilliant. Just a single', 'timestamp': [8.0, 11.0]}, {'text': ' that was off a leg by from Mustafa Zur and', 'timestamp': [11.0, 14.0]}, {'text': ' five dots including a wicked.', 'timestamp': [14.0, 16.0]}, {'text': ' Incredible over. The big call.', 'timestamp': [16.0, 21.0]}, {'text': " A big decision for Bangladesh and they've", 'timestamp': [21.0, 23.0]}]
-
-g = GenerateVideo()
-g.generateHighLightVideo(transcribe=t)
+    cut_video(input_video_path, output_video_path, timestamps)

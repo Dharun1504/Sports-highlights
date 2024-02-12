@@ -5,7 +5,7 @@ import datetime
 
 class Generator:
     def __init__(self) -> None:
-        self.wav_path = "F:/Software-Project/Sport-Highlights/Audios/"
+        self.wav_path = "F:\Software-Project\Highlights\Sports-highlights\Audios\\"
         self.conv = vidAud.Convertor()
         self.trans = transcription.Transcriptor()
         self.llm = gpt.LLM()
@@ -20,7 +20,7 @@ class Generator:
         print("Transcription done.. Sending to LLM")
         
         completion = self.llm.get_timestamps(transcripts)
-        return completion
+        return completion["choices"][0]["message"]["content"]
         
 
 if __name__=='main':
@@ -28,6 +28,6 @@ if __name__=='main':
     input_video_path = "F:\Software-Project\Sport-Highlights\Cricket-data\DRAMATIC Final Over!   15 Runs To Win Off 6 Balls   West Indies v India   1st CG United ODI 2022.mp4"
 
     gen = Generator()
-    completion = gen.get_highlight_timestamps(input_video_path,output_wav_path)
+    completion = gen.get_highlight_timestamps(input_video_path)
 
     print(completion)
