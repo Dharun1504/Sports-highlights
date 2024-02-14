@@ -1,8 +1,10 @@
 from moviepy.editor import VideoFileClip, concatenate_videoclips
 import os
+from utility import check
 
 def cut_video(input_video, output_video, timestamps):
     clips = []
+    timestamps = check(timestamps)
     for segment in timestamps:
         start_time, end_time = segment['timestamp']
         clip = VideoFileClip(input_video).subclip(start_time , end_time)

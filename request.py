@@ -5,7 +5,7 @@ base_url = 'http://127.0.0.1:5000/data'  # Assuming the Flask app is running loc
 
 
 # POST request
-new_item = {'path': 'F:\Software-Project\Sport-Highlights\Cricket-data\Dinesh Karthik hits 22 runs off Rubel Hossain - 19th over of Nidahas Trophy Final.mp4' }
+new_item = {'path': 'F:\Software-Project\Highlights\Sports-highlights\Cricket-data\cd.mp4' }
 response = requests.post(base_url, json=new_item)
 if response.status_code == 204:
     print("New item added successfully")

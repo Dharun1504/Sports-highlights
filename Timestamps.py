@@ -17,6 +17,7 @@ class Generator:
         print(f"Conversion complete. WAV file saved at: {output_wav_path}")
         
         transcripts = self.trans.transcribe(output_wav_path)
+        print(transcripts)
         print("Transcription done.. Sending to LLM")
         
         completion = self.llm.get_timestamps(transcripts)
