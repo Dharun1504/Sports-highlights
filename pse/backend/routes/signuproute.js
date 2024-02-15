@@ -1,19 +1,10 @@
 const router=require("express").Router();
 const login=require("../models/loginmodel");
-const multer=require('multer');
+
 const path=require('path');
+const multer=require('multer');
 
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, './uploads'); 
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-
-const upload = multer({ storage });
 router.post("/signup",async(req,res)=>{
     try{
         const data=req.body;
@@ -46,10 +37,33 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post('/upload', upload.single('file'), (req, res) => {
-  
-  res.status(200).json({ message: 'File uploaded successfully!' });
-});
+router.post('/upload', (req, res) => {
+  if (req.files === null) {
+      return res.status(400).json({ msg: 'No file uploaded' });  
+  }
+  const theFile = req.files.file;
+
+
+  console.log(theFile); 
+  theFile.mv(`${__dirname}/public/uploads/${theFile.name}`, err => {
+        if (err) {
+            console.log(err);
+            return res.status(500).send(err); 
+        }
+    }); 
+
+
+
+
+    res.json({ 
+        fileName: theFile.name,
+        filePath: `/uploads/${theFile.name}`
+    })
+
+
+})
+
+
 
 
 
