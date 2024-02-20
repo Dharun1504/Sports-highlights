@@ -21,6 +21,7 @@ class Generator:
         print("Transcription done.. Sending to LLM")
         
         completion = self.llm.get_timestamps(transcripts)
+        print("\n\n",completion["choices"][0]["message"]["content"],"\n\n")
         return completion["choices"][0]["message"]["content"]
         
 

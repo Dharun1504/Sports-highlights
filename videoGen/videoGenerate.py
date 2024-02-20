@@ -1,6 +1,30 @@
 from moviepy.editor import VideoFileClip, concatenate_videoclips
 import os
-from utility import check
+
+def modifyTS(a):
+    t1 = a[0] - 2
+    if(t1 < 0):
+        t1 = 0
+    return [t1, a[1] + 2]
+
+def checkOverLap(a, b):
+    if(a[1] > b[0]):
+        b[0] = a[1]
+    return b 
+
+def check(timestamps):
+    t = []
+    for i in timestamps:
+        if(len(t) != 0):
+            t.append(checkOverLap(t[-1], modifyTS(i['timestamp'])))
+        else:
+            t.append(modifyTS(i['timestamp']))
+    p = 0
+    for i in timestamps:
+        i["timestamp"] = t[p]
+        p += 1
+    return timestamps
+
 
 def cut_video(input_video, output_video, timestamps):
     clips = []
@@ -15,10 +39,8 @@ def cut_video(input_video, output_video, timestamps):
     for clip in clips:
         clip.close()
 
-# Example usage
-if __name__=='main':
-    input_video_path = 'F:\Software-Project\Highlights\Sports-highlights\Cricket-data\Dramatic Final Over In FULL   Thrilling T20 Goes To Final Ball   England v New Zealand 2013.mp4'
-    output_video_path = 'output_video.mp4'
-    timestamps = [{'timestamp': [0.0, 9.0], 'text': " He's nailed this. He's high in the air. He's got enough. Oh, yes, he does. He's six."},{'timestamp': [20.0, 25.0], 'text': " picked it up the six pressure on Anderson. Ornith looks at it. That's good for a young gun."},{'timestamp': [33.0, 34.0], 'text': " And he's got not got this."},{'timestamp': [36.0, 38.0], 'text': ' Right, 19.1.'},{'timestamp': [39.0, 41.0], 'text': ' The 194 for three New Zealand.'},{'timestamp': [41.0, 43.0], 'text': ' 192 for five England.'},{'timestamp': [63.0, 65.0], 'text': " that's better. Dot ball. That ball for New Zealand went"},{'timestamp': [65.0, 66.0], 'text': ' for four.'},{'timestamp': [103.0, 105.0], 'text': " Tries the bounce and he's pulled into the leg side. He's got the crowd. Robbie Bupara has got the crowd. Fancy a nine. He's got the crowd."},{'timestamp': [133.46, 135.62], 'text': ' Down to a T20 here.'},{'timestamp': [185.0, 187.0], 'text': ' Like a side salad Cori Anderson. Good recovery is this.'},{'timestamp': [187.0, 189.0], 'text': ' Six off the first ball.'},{'timestamp': [205.88, 207.72], 'text': ' The final eight off two.'},{'timestamp': [208.44, 211.32], 'text': ' Left hand, though, hitting to the short boundary now.'},{'timestamp': [247.0, 250.0], 'text': ' Six for a super over.'},{'timestamp': [250.0, 252.0], 'text': ' And came super over.'},{'timestamp': [258.0, 260.0], 'text': ' Give it everything there Ben Stolkes'},{'timestamp': [322.52, 324.28], 'text': ' Robby with par a just a single'},{'timestamp': [324.28, 329.0], 'text': ' its New Zealand in a wonderfully entertaining game at T20 cricket.'},{'timestamp': [334.0, 336.0], 'text': ' Anderson, as did Butler.'},{'timestamp': [343.0, 345.36], 'text': ' Continuous changes of plans from Brendan McCullough,'}]
 
-    cut_video(input_video_path, output_video_path, timestamps)
+input_video_path = 'F:\Software-Project\Highlights\Sports-highlights\Cricket-data\Russell & Warner-ன் ஒரு தரமான Batting Show   #AUSvWI 3rd T20I Tamil Highlights.mp4'
+output_video_path = 'output_video_tamil.mp4'
+timestamps =[{"text": "Australia vs West Indies, 3-0-20 international", "timestamp": [0.0, 3.44]}, {"text": "Powerful batting line, we are able to do better in the 3rd match", "timestamp": [12.0, 16.4]}, {"text": "Out", "timestamp": [39.8, 45.0]}, {"text": "ou theyeri, easy catch", "timestamp": [45.0, 49.3]}, {"text": "Out", "timestamp": [54.5, 59.0]}, {"text": "1-star out.", "timestamp": [65.24, 70.52]}, {"text": "3-4-7.", "timestamp": [91.4, 96.52]}, {"text": "Super shot.", "timestamp": [99.88, 105.28]}, {"text": "What a shot.", "timestamp": [118.72, 124.52]}, {"text": "Goal.", "timestamp": [141.64, 147.84]}, {"text": "Out.", "timestamp": [168.52, 174.88]}, {"text": "A six shot!", "timestamp": [529.74, 535.94]}, {"text": "Go!", "timestamp": [667.88, 673.88]}, {"text": "Clean Maxwell gone.", "timestamp": [668.88, 674.88]}, {"text": "152 for 5.", "timestamp": [679.88, 685.88]}]
+cut_video(input_video_path, output_video_path, timestamps)

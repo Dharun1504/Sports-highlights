@@ -13,9 +13,8 @@ class Transcriptor:
     )
   
   def transcribe(self,path): 
-    prediction = self.pipe(path, batch_size=8)["text"]
-
     prediction = self.pipe(path, batch_size=8, return_timestamps=True)["chunks"]
+    print(prediction)
 
     return prediction
     
