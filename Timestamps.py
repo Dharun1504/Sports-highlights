@@ -4,11 +4,14 @@ from LLM import gpt
 import datetime
 
 class Generator:
-    def __init__(self) -> None:
+    def __init__(self,api_base, api_version, api_key):
+        self.api_base = api_base
+        self.api_version = api_version
+        self.api_key = api_key
         self.wav_path = "F:\Software-Project\Highlights\Sports-highlights\Audios\\"
         self.conv = vidAud.Convertor()
         self.trans = transcription.Transcriptor()
-        self.llm = gpt.LLM()
+        self.llm = gpt.LLM(api_base, api_version, api_key)
     
     def get_highlight_timestamps(self,input_video_path):
         output_wav_path = f'{self.wav_path}{datetime.datetime.now().timestamp()}.wav'

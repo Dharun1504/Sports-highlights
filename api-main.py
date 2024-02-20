@@ -1,4 +1,4 @@
-from App import SportApp
+from SportStack import SportApp
 from flask import Flask, jsonify, request
 
 sport = SportApp()
