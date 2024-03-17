@@ -3,7 +3,7 @@ import dotenv
 from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 
-sport = Highlights_gpt('Destination\\',
+sport = Highlights_gpt('react\\frontend\\public\\Videos\\',
                           api_base="https://openai-demetrius.openai.azure.com/", 
                           api_version="2023-07-01-preview", 
                           api_key=dotenv.get_key(key_to_get="OPENAI_API_KEY", dotenv_path = ".env") )
@@ -28,7 +28,7 @@ def add_data():
     print(vid_path)
     result = sport.generate_highlights(vid_path)    
     
-    return jsonify(result), 204  # No content response
+    return jsonify(result), 200  # No content response
 
 if __name__ == '__main__':
     app.run(debug=True)  # Enable debugging for development

@@ -4,7 +4,7 @@ import "../styles/VideoUploadStyles.css";
 
 export default function FileUpload() {
     const [file, setFile] = useState("");
-
+    const [pathOutput,setPathOutput] = useState("");
     const handleChange = (e) => {
         setFile(e.target.files[0]);
     };
@@ -20,6 +20,7 @@ export default function FileUpload() {
                 },
             });
             const new_path =await axios.post("http://localhost:5000/data",{path:path.data.filePath})
+            console.log(new_path)
 
         } catch (err) {
             console.log(err)
@@ -31,9 +32,13 @@ export default function FileUpload() {
             <form className="file-upload-form" onSubmit={onSubmit}>
                 
                 <label>Upload Video Here: <input className="file-input" type="file" id="customFile" onChange={handleChange} />{" "}</label>
-                <label>Video Duration: <input type="number" min="2" max="10" className="time-limit"     ></input></label>
+                {/* <label>Video Duration: <input type="number" min="2" max="10" className="time-limit"     ></input></label> */}
                 <button className="submit-button" type="submit">Submit</button>
             </form>
+            <video height={300} controls>
+                <source src="Videos/1710664150.380877.mp4" type="video/mp4"/>
+            </video>
+            
         </div>
     )
 }
