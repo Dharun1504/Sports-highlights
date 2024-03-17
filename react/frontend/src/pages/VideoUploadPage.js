@@ -29,7 +29,7 @@ export default function FileUpload() {
 
     return (
         <div className="file-upload-container">
-            <form className="file-upload-form" onSubmit={onSubmit}>
+            <form className="file-upload-form" onSubmit={(e)=>onSubmit(e)}>
                 
                 <label>Upload Video Here: <input className="file-input" type="file" id="customFile" onChange={handleChange} />{" "}</label>
                 {/* <label>Video Duration: <input type="number" min="2" max="10" className="time-limit"     ></input></label> */}
