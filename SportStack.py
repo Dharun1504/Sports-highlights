@@ -17,7 +17,7 @@ class Highlights_gpt:
         j = json.loads(timestamps)
         print(j)
         name = datetime.datetime.now().timestamp()
-        op = f'{self.destination}{name}.mp4'
+        op = f'{self.destination}\{name}.mp4' 
         cut_video(in_path, op, j)
         return name
     

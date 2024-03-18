@@ -10,10 +10,10 @@ function App() {
       <BrowserRouter>
       <Routes>
           <Route path ='/' element={<Login setAuthenticated={setAuthenticated} />}/>
-          <Route path='/upload' element={authenticated ? <Upload/> : <Navigate to='/' />}
+          <Route path='/upload' element={<Upload/> }
           />     
 
-           
+
 
       </Routes>
       </BrowserRouter>

@@ -1,11 +1,12 @@
 .file-upload-container {
-  background-image: linear-gradient(rgba(218, 0, 0, 0.63),rgb(255, 255, 255));
+  background-image: linear-gradient(rgba(0, 0, 0),rgb(16, 20, 38));
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 75vh;
+  height: 100vh;
   padding: 40px;
+  
 }
 
 .file-upload-form {
@@ -16,11 +17,21 @@
   flex-direction: column;
   padding: 10px;
   align-items: center;
-  border: 1px groove rgb(26, 17, 3);
-  border-radius: 5px;
-  background-color: #fff;
+  border: 1px groove rgb(0, 0, 0);
+  border-radius: 15px;
+  background-color: #12141c;
   opacity: 1;
+  box-shadow: 0px 6px 40px rgb(1, 1, 30);
+  
 }
+
+label{
+  color: rgb(255, 255, 255);
+  margin-top: 70px;
+  margin-left: 90px;
+}
+
+
 
 .file-input {
   margin-top: 20px;
