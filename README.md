@@ -49,8 +49,13 @@ This project aims to automate the process of generating highlights from sports m
 
 1. **Install Dependencies**: Ensure all required dependencies are installed by running `pip install -r requirements.txt` for the backend and `npm install` for the frontend.
 2. **Start the Server**: Run `python flask-api.py` to start the Flask server for the web application and API.
-3. **Access the Web Interface**: Open the provided URL in your web browser to access the web application.
-4. **Upload Video**: Use the file upload feature to upload a sports match video.
-5. **Generate Highlights**: Click the "Generate Highlights" button to initiate the highlights generation process.
-6. **View Highlights**: Once the process is complete, the generated highlight reel will be displayed on the web interface for viewing and sharing.
+
+   ![image](https://github.com/demi2k-sudo/Sports-highlights/assets/85375873/d86f66fe-c8d6-4ed7-9c53-e6862bf00fac)
+   ![image](https://github.com/demi2k-sudo/Sports-highlights/assets/85375873/b95d52eb-11d6-4e0a-a04a-0df1db620f90)
+
+
+4. **Access the Web Interface**: Open the provided URL in your web browser to access the web application.
+5. **Upload Video**: Use the file upload feature to upload a sports match video.
+6. **Generate Highlights**: Click the "Generate Highlights" button to initiate the highlights generation process.
+7. **View Highlights**: Once the process is complete, the generated highlight reel will be displayed on the web interface for viewing and sharing.
 
