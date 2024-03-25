@@ -8,6 +8,8 @@ This project aims to automate the process of generating highlights from sports m
 - **NLP-based Highlight Extraction**: Applies natural language processing techniques to identify key moments in the match commentary, such as boundaries, wickets, and notable events.
 - **AI-powered Video Editing**: Cuts and stitches video segments corresponding to the identified highlights to produce a concise and engaging highlight reel.
 - **Multiple AI Models**: Supports multiple AI models for transcription, NLP-based analysis, and video editing, providing flexibility and customization options.
+- **Web Interface with Flask API**: Provides a user-friendly web interface for uploading videos and generating highlights, powered by a Flask API backend.
+- **Responsive Frontend with React**: Offers a modern and responsive user interface built using React for seamless interaction and user experience.
 
 ## Modules
 
@@ -33,16 +35,22 @@ This project aims to automate the process of generating highlights from sports m
 - **Description**: Handles the editing of sports match videos based on the timestamps extracted from the NLP module.
 - **Technologies**: Employs the MoviePy library for video editing operations, including cutting, concatenation, and export.
 
-### 4. Web Application (`app.py`, `videouploadpage.js`)
+### 4. Flask API (`flask-api.py`)
 
-- **Description**: Provides a user-friendly interface for uploading sports match videos and generating highlight reels.
-- **Technologies**: Built using React.js for the frontend and Flask for the backend, facilitating seamless integration with the AI modules.
+- **Description**: Provides a Flask API backend for the web interface, allowing users to upload videos and initiate the highlights generation process.
+- **Technologies**: Utilizes Flask framework for building the API endpoints and handling requests.
+
+### 5. React Frontend (`react`)
+
+- **Description**: Implements a modern and responsive user interface using React for seamless interaction and user experience.
+- **Technologies**: Utilizes React framework along with other related libraries and tools for frontend development.
 
 ## Usage
 
 1. **Install Dependencies**: Ensure all required dependencies are installed by running `pip install -r requirements.txt` for the backend and `npm install` for the frontend.
-2. **Start the Server**: Run `python app.py` to start the Flask server for the web application.
+2. **Start the Server**: Run `python flask-api.py` to start the Flask server for the web application and API.
 3. **Access the Web Interface**: Open the provided URL in your web browser to access the web application.
 4. **Upload Video**: Use the file upload feature to upload a sports match video.
 5. **Generate Highlights**: Click the "Generate Highlights" button to initiate the highlights generation process.
 6. **View Highlights**: Once the process is complete, the generated highlight reel will be displayed on the web interface for viewing and sharing.
+
