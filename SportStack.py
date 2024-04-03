@@ -10,9 +10,9 @@ class Highlights_gpt:
         self.destination = destination
         self.gen = Generator_gpt(api_base, api_version, api_key)
 
-    def generate_highlights(self, in_path):
+    def generate_highlights(self, in_path, user_query):
         # in_path="F:\Software-Project\Highlights\Sports-highlights\Cricket-data\Sharma Stars In Thriller   SUPER OVER REPLAY   BLACKCAPS v India - 3rd T20, 2020.mp4"
-        timestamps = self.gen.get_highlight_timestamps(in_path)
+        timestamps = self.gen.get_highlight_timestamps(in_path,user_query)
         print(timestamps)
         j = json.loads(timestamps)
         print(j)

@@ -10,13 +10,13 @@ class LLM:
         self.api_key = api_key
         
     
-    def get_timestamps(self, commentary):
+    def get_timestamps(self, commentary, user_query):
         openai.api_type = "azure"
         openai.api_base = self.api_base#"https://openai-demetrius.openai.azure.com/"
         openai.api_version = self.api_version#"2023-07-01-preview"
         openai.api_key = self.api_key#dotenv.get_key(key_to_get="OPENAI_API_KEY", dotenv_path = "F:\Software-Project\Sport-Highlights\LLM\.env")      
         form = '[{"text": "The player Dhoni hits a six", "timestamp": [5.0, 11.0]},]'
-        message_text = [{"role":"system","content":f"You are an AI assistant that finds important events in a cricket match(boundaries and wickets) when you are provided with the commentary transcripts with timestamps. Return the timestamps of the important events(more than 5 sec each interval should be) alone in a json format({form}). note: use the commentary as only reference, you should imagine the match and give intervals so that the shots don't get cut in between. Do not include any escape sequence characters in ur response. dont use single quotes and use double quotes everywhere. :  {commentary}"}]
+        message_text = [{"role":"system","content":f"You are an AI assistant that finds important events in a cricket match(boundaries and wickets) when you are provided with the commentary transcripts with timestamps. Return the timestamps of the important events(more than 5 sec each interval should be) alone in a json format({form}). The user has also mentioned that (\"{user_query}\") note: use the commentary as only reference, you should imagine the match and give intervals so that the shots don't get cut in between. Do not include any escape sequence characters in ur response. dont use single quotes and use double quotes everywhere. :  {commentary}"}]
 
         self.completion = openai.ChatCompletion.create(
         engine="gpt4-demetrius",

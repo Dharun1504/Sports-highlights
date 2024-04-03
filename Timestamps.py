@@ -14,7 +14,7 @@ class Generator_gpt:
         self.trans = transcription.Transcriptor()
         self.llm = gpt.LLM(api_base, api_version, api_key)
     
-    def get_highlight_timestamps(self,input_video_path):
+    def get_highlight_timestamps(self,input_video_path,user_query):
         output_wav_path = f'{self.wav_path}{datetime.datetime.now().timestamp()}.wav'
         print('This is the path :',output_wav_path)
         self.conv.to_wav(input_video_path, output_wav_path)
@@ -24,7 +24,7 @@ class Generator_gpt:
         print(transcripts)
         print("Transcription done.. Sending to LLM")
         
-        completion = self.llm.get_timestamps(transcripts)
+        completion = self.llm.get_timestamps(transcripts,user_query)
         print("\n\n",completion["choices"][0]["message"]["content"],"\n\n")
         return completion["choices"][0]["message"]["content"]
   

@@ -14,18 +14,19 @@ export default function FileUpload() {
     const handleChange = (e) => {
         setFile(e.target.files[0]);
     };
-
+    const [userQuery,setUserQuery] = useState("");
     const onSubmit1 = async (e) => {
         e.preventDefault();
         const formData = new FormData();  
-        formData.append("file", file); 
+        formData.append("file", file);
         try {
+            // console.log(formData);
             const path = await axios.post("/api/v1/upload", formData, {
                 headers: {
                     "Content-type": "multipart/form-data",
                 }, 
             });
-            const new_path =await axios.post("http://localhost:5000/data",{path:path.data.filePath})
+            const new_path =await axios.post("http://localhost:5000/data",{path:path.data.filePath,userQuery:userQuery})
             setPathOutput(new_path.data)
             console.log(new_path.data)
 
@@ -38,7 +39,9 @@ export default function FileUpload() {
         <div className="file-upload-container" >
             <form className="file-upload-form" data-aos = 'fade-up' onSubmit={(e)=>onSubmit1(e)}>
                 
-                <label><input className="file-input" type="file" id="customFile" onChange={handleChange} />{" "}</label>
+                <label>
+                    <input onChange={(e)=>setUserQuery(e.target.value)} value={userQuery}/>
+                    <input className="file-input" type="file" id="customFile" onChange={handleChange} />{" "}</label>
                 {/* <label>Video Duration: <input type="number" min="2" max="10" className="time-limit"     ></input></label> */}
                 <button className="submit-button" type="submit">Submit</button>
             </form>
