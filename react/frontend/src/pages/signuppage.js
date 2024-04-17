@@ -2,39 +2,35 @@ import React from 'react';
 import { Form, Input, Button, message } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '../styles/LoginPage.css';
+import '../styles/SignupPage.css'; // Create a separate CSS file for the signup page styles
 
-const LoginPage = ({ setAuthenticated }) => {
+const SignupPage = () => {
   const navigate = useNavigate();
   
   const onFinishHandler = async (values) => {
     try {
-      const formattedValues = {
-        username: values.username,
-        password: values.password,
-      };
-      
-      const res = await axios.post('/api/v1/login', formattedValues);
+        const formattedValues = {
+            username: values.username,
+            password: values.password,
+          };
+      const res = await axios.post('/api/v1/signup', formattedValues);
 
-      if (res.data.message === 'Login successful') {
-        message.success('Login Successful!');
-        setAuthenticated(true);
+      if (res.data.message === 'signed up successfully') {
+        message.success('Sign Up Successful!');
         navigate('/home');
       } else {
         message.error(res.data.message);
-        setAuthenticated(false);
       }
     } catch (error) {
       console.log(error);
       message.error('Something went wrong');
-      setAuthenticated(false);
     }
   };
 
   return (
-    <div className='login-container'>
-      <div className='login-form-container'>
-        <h1 className='login-heading'><em>Login</em></h1>
+    <div className='signup-container'>
+      <div className='signup-form-container'>
+        <h1 className='signup-heading'><em>Sign Up</em></h1>
         <Form onFinish={onFinishHandler} layout="vertical">
           <Form.Item label='Username' name='username' rules={[{ required: true, message: 'Username is required' }]}>
             <Input className='input-field' placeholder='Enter your username' />
@@ -43,12 +39,12 @@ const LoginPage = ({ setAuthenticated }) => {
             <Input.Password className='input-field' placeholder='Enter your password' />
           </Form.Item>
           <Form.Item>
-            <Button type='primary' htmlType='submit' className='login-button'>
-              LOGIN
+            <Button type='primary' htmlType='submit' className='signup-button'>
+              SIGN UP
             </Button>
           </Form.Item>
           <Form.Item>
-            <span>Don't have an account? <Link to='/register' className='register-link'>Register now!</Link></span>
+            <span>Already have an account? <Link to='/login' className='login-link'>Login here!</Link></span>
           </Form.Item>
         </Form>
       </div>
@@ -56,4 +52,4 @@ const LoginPage = ({ setAuthenticated }) => {
   );
 };
 
-export default LoginPage;
+export default SignupPage;

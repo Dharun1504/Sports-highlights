@@ -3,7 +3,8 @@ import axios from "axios";
 import "../styles/VideoUploadStyles.css";
 import Aos from "aos";
 import 'aos/dist/aos.css';
-export default function FileUpload() {
+export default function FileUpload() {  
+    const [buttonstate,setbuttonnstate]=useState(true);
 
     useEffect(() => {
 		Aos.init({duration:2000});
@@ -14,9 +15,12 @@ export default function FileUpload() {
     const handleChange = (e) => {
         setFile(e.target.files[0]);
     };
+
     const [userQuery,setUserQuery] = useState("");
     const onSubmit1 = async (e) => {
         e.preventDefault();
+        setbuttonnstate(false);
+        
         const formData = new FormData();  
         formData.append("file", file);
         try {
@@ -43,8 +47,10 @@ export default function FileUpload() {
                     <input onChange={(e)=>setUserQuery(e.target.value)} value={userQuery}/>
                     <input className="file-input" type="file" id="customFile" onChange={handleChange} />{" "}</label>
                 {/* <label>Video Duration: <input type="number" min="2" max="10" className="time-limit"     ></input></label> */}
-                <button className="submit-button" type="submit">Submit</button>
+                {buttonstate===true &&<button className="submit-button" type="submit">Submit</button>}
+                {buttonstate===false && <button  onClick={(e)=>setbuttonnstate(true)}>Cancel</button>}
             </form>
+           
             {/* <video height={300} controls data-aos = 'fade-up'>
                         <source src={"http://localhost:8080/video/"+"1710664150380877.mp4"} type="video/mp4"/>
             </video> */}

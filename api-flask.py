@@ -26,7 +26,7 @@ def add_data():
     req = request.get_json()
     vid_path = req['path']
     user_query = req['userQuery']
-    print(vid_path,"\n",user_query)
+    print(vid_path,"\n",    user_query)
     result = sport.generate_highlights(vid_path,user_query)    
     
     return jsonify(result), 200  # No content response
