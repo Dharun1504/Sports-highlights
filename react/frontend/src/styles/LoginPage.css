@@ -7,8 +7,8 @@
 }
 
 .login-form-container {
-  width: 300px;
-  padding: 20px;
+  width: 350px;
+  padding: 40px;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -21,13 +21,16 @@
 }
 
 .input-field {
-  border-radius: 4px;
+  width: 100%;
 }
 
 .login-button {
   width: 100%;
+  border-radius: 3px;
 }
 
 .register-link {
-  color: #1890ff;
+  text-align: center;
+  display: block;
+  margin-top: 20px;
 }

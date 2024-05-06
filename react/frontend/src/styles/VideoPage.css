@@ -1,0 +1,58 @@
+/* VideoPage.css */
+
+.header-container {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* VideoPage.css */
+
+.video-title {
+  font-size: 24px; /* Adjust the font size as needed */
+  color: #fff; /* Text color for video title */
+  margin-top: 10px; /* Adjust the top margin as needed */
+}
+
+  .video-page-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    padding: 20px;
+  }
+  
+  .video-player {
+    flex: 0.8;
+    border-right: 2px solid #110505; /* Add a vertical line on the right side */
+    padding-right: 20px; /* Add padding to create space between the video and the line */
+  }
+  
+  .video-player video {
+    width: 100%;
+    height: auto;
+  }
+  
+  .related-videos {
+    width: 300px; 
+   
+  }
+  
+  .related-video {
+    margin-bottom: 20px;
+  }
+  
+  .related-video video {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .related-video-title {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #fff; /* Text color for related video title */
+  }
+  .related-videos h2 {
+    color: #ffffff; /* Adjust the color as needed */
+  }

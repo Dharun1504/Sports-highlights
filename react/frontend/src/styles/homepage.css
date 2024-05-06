@@ -1,0 +1,72 @@
+/* homepage.css */
+
+.header-container {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .sidebar {
+    width: 200px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+  }
+  
+  .sidebar a {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .sidebar a:hover {
+    color: #000;
+  }
+  
+  .video-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .video-card {
+    width: calc(33.33% - 20px);
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .video-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .video {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .video-title {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .video-card {
+      width: calc(50% - 20px);
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .video-card {
+      width: calc(100% - 20px);
+    }
+  }
+
+  
+  
